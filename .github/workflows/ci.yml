@@ -24,7 +24,7 @@ jobs:
       - name: Exit normally
         run: (exit 0)
   Style:
-    name: format check
+    name: Style
     runs-on: ubuntu-latest
 
     steps:
