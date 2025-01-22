@@ -25,7 +25,7 @@ jobs:
         run: go install github.com/securego/gosec/v2/cmd/gosec@latest
 
       - name: gosec check
-        run: gosec
+        run: gosec ./...
         
       - name: Exit normally
         run: (exit 0)
