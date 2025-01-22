@@ -19,7 +19,7 @@ jobs:
           go-version: "1.23.0"
 
       - name: go test
-        run: go test ./... -cover
+        run: go test -cover
       
       - name: Exit normally
         run: (exit 0)
@@ -45,7 +45,7 @@ jobs:
         run: ! $(test -z $(go fmt ./...)) && (exit 1)
       
       - name: Linting check
-        run: staticcheck ./...
+        run: staticcheck
 
       - name: Exit properly
         run: (exit 0)
