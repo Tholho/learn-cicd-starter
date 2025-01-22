@@ -18,8 +18,8 @@ jobs:
         with:
           go-version: "1.23.0"
 
-      - name: Check Go version
-        run: go version
+      - name: go test
+        run: go test
       
       - name: Exit normally
         run: (exit 0)
