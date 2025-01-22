@@ -19,10 +19,11 @@ jobs:
           go-version: "1.23.0"
 
       - name: go test
-        run: go test -cover
+        run: go test ./... -cover
       
       - name: Exit normally
         run: (exit 0)
+
   Style:
     name: Style
     runs-on: ubuntu-latest
@@ -35,6 +36,16 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: "1.23.0"
-      
+     
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+
       - name: Verify all files format and exit with result
-        run: (exit $(test -z $(go fmt ./...)))
+        run: ! $(test -z $(go fmt ./...)) && (exit 1)
+      
+      - name: Linting check
+        run: staticcheck ./...
+
+      - name: Exit properly
+        run: (exit 0)
