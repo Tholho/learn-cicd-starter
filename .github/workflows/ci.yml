@@ -40,7 +40,6 @@ jobs:
       - name: Install staticcheck
         run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
-
       - name: Verify all files format and exit with result
         run: ! $(test -z $(go fmt ./...)) && (exit 1)
       
