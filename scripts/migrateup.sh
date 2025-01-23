@@ -4,5 +4,5 @@ if [ -f .env ]; then
     source .env
 fi
 
-cd /sql/schema
+cd ./sql/schema
 goose turso $DATABASE_URL up
