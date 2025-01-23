@@ -20,11 +20,18 @@ jobs:
 
       - name: go test
         run: go test -cover
-      
+
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: gosec check
+        run: gosec ./...
+        
       - name: Exit normally
         run: (exit 0)
+
   Style:
-    name: format check
+    name: Style
     runs-on: ubuntu-latest
 
     steps:
@@ -35,6 +42,15 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: "1.23.0"
-      
+     
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
       - name: Verify all files format and exit with result
-        run: (exit $(test -z $(go fmt ./...)))
+        run: test -z $(go fmt ./...)
+      
+      - name: Linting check
+        run: staticcheck
+
+      - name: Exit properly
+        run: (exit 0)
