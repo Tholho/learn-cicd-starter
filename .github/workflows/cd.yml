@@ -20,6 +20,3 @@ jobs:
 
             - name: Setup Build
               run: ./scripts/buildprod.sh
-
-            - name: Exit proper
-              run: (Exit 0)
